@@ -1,0 +1,63 @@
+Basic addressing modes :
+
+1) Immediate - value is specified as an operand directly. It can only be a source operand. All the other modes can be source/ destination
+
+E.g. movl $1, %eax
+    movl $1, $2 - does not make sense
+
+
+2) Register - value is in a register
+
+3) Direct - The instruction contains the memory address to access.
+E.g., movl ADDRESS, %eax 
+Loads the value at ADDRESS into %eax
+
+
+4) Indirect - Loads a value from the address indicated by a register.
+
+movl (%eax), %ebx
+
+eax = 1000                 MM --- 1000 - 255
+loads ebx with 255
+
+
+
+5) Indexed - instruction contains address. In addition, an index/offset with multiplier is specified.
+E.g.
+movl base_address(%eax, %edi, 4), %eax
+
+
+
+6) Base pointer - similar to indirect but an offset is added to the register's value before lookup.
+
+E.g.
+movl 4(%eax), %ebx => eax = 1000 => eax + 4 = 1004 => Fetches content at 1004
+
+
+General form of memory addr:
+ADDRESS_OR_OFFSET (%BASE_OR_OFFSET, %INDEX, MULTIPLIER)
+FINAL ADDRESS = ADDRESS_OR_OFFSET + BASE_OR_OFFSET + INDEX * MULTIPLIER
+ADDRESS_OR_OFFSET and MULTIPLIER must be constants
+The other 2 must be variables(registers)
+All fields are optional
+
+
+
+
+
+
+
+#General purpose
+eax
+ebx
+ecx
+edx
+edi data_index
+esi stack_index
+
+Special purpose registers
+ebp basepointer
+esp stackpointer
+eip instructionpointer
+eflags flags
+
